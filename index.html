@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Имя Фамилия — Портфолио</title>
+  <meta name="description" content="Портфолио — проекты, навыки и контакты." />
+  <style>
+    /* Простая, адаптивная и чистая стилизация */
+    :root{
+      --bg:#0f1724; --card:#0b1220; --muted:#9aa4b2; --accent:#3b82f6;
+      --radius:12px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#071023 0%, #081125 100%); color:#e6eef6; line-height:1.5}
+    .container{max-width:980px;margin:32px auto;padding:20px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .avatar{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:inline-flex;align-items:center;justify-content:center;font-weight:700}
+    nav{display:flex;gap:10px;flex-wrap:wrap}
+    nav a{color:var(--muted);text-decoration:none;padding:8px;border-radius:8px;font-size:0.95rem}
+    nav a:hover{color:#fff;background:rgba(255,255,255,0.03)}
+    .hero{display:grid;grid-template-columns:1fr;gap:18px;margin-top:28px;padding:20px;background:rgba(255,255,255,0.02);border-radius:var(--radius)}
+    .hero h1{margin:0;font-size:2rem}
+    .hero p{margin:0;color:var(--muted)}
+    .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:18px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .card img{width:100%;height:140px;object-fit:cover;border-radius:8px}
+    .card h3{margin:8px 0 6px 0;font-size:1.05rem}
+    .card p{margin:0;color:var(--muted);font-size:0.95rem}
+    .skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .skill{background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px;font-size:0.9rem;color:var(--muted)}
+    footer{margin-top:28px;padding:18px;border-radius:10px;text-align:center;color:var(--muted);font-size:0.9rem}
+    .actions{display:flex;gap:10px}
+    .btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:10px;text-decoration:none;color:inherit}
+    .meta{display:flex;gap:10px;align-items:center}
+    @media (max-width:640px){
+      header{flex-direction:column;align-items:flex-start}
+      .hero h1{font-size:1.5rem}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="avatar" aria-hidden="true">ИФ</div>
+        <div>
+          <div style="font-weight:700">Имя Фамилия</div>
+          <div style="font-size:0.9rem;color:var(--muted)">Frontend • React • HTML & CSS</div>
+        </div>
+      </div>
+
+      <nav aria-label="Основная навигация">
+        <a href="#about">Обо мне</a>
+        <a href="#projects">Проекты</a>
+        <a href="#contact">Контакты</a>
+        <a href="https://github.com/USERNAME" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <section class="hero" id="about" aria-labelledby="about-title">
+      <div>
+        <h1 id="about-title">Привет — я Имя, делаю интерфейсы и сайты</h1>
+        <p>Коротко: специализация, язык, интересы. Здесь можно пару предложений о себе (напр., ищу работу/фриланс/проекты).</p>
+
+        <div class="skills" aria-hidden="false" style="margin-top:10px">
+          <span class="skill">HTML</span>
+          <span class="skill">CSS</span>
+          <span class="skill">JavaScript</span>
+          <span class="skill">React</span>
+          <span class="skill">Node</span>
+        </div>
+
+        <div style="margin-top:12px" class="actions">
+          <a class="btn" href="#projects">Смотреть проекты</a>
+          <a class="btn" href="mailto:you@example.com">Написать</a>
+        </div>
+      </div>
+
+      <div style="min-width:220px;display:flex;align-items:center;justify-content:center">
+        <!-- место для фото/иллюстрации -->
+        <div style="width:180px;height:180px;border-radius:18px;background:linear-gradient(135deg,#0b1220,#071026);display:flex;align-items:center;justify-content:center">
+          <div style="text-align:center;color:var(--muted);font-size:0.9rem">Здесь можно вставить фото или изображение проекта</div>
+        </div>
+      </div>
+    </section>
+
+    <h2 id="projects" style="margin-top:22px">Проекты</h2>
+    <div class="projects">
+      <!-- Пример карточки проекта — скопируй/замени -->
+      <article class="card" aria-labelledby="p1">
+        <img src="https://via.placeholder.com/600x300?text=Project+1" alt="Скриншот проекта 1">
+        <h3 id="p1">Проект 1 — Название</h3>
+        <p>Короткое описание: что делает, стек, ключевые особенности.</p>
+        <p style="margin-top:8px">
+          <a href="https://github.com/USERNAME/project-1" target="_blank" rel="noopener noreferrer" class="btn">Смотреть на GitHub</a>
+        </p>
+      </article>
+
+      <article class="card" aria-labelledby="p2">
+        <img src="https://via.placeholder.com/600x300?text=Project+2" alt="Скриншот проекта 2">
+        <h3 id="p2">Проект 2 — Название</h3>
+        <p>Короткое описание: что делает, стек, ключевые особенности.</p>
+        <p style="margin-top:8px">
+          <a href="https://github.com/USERNAME/project-2" target="_blank" rel="noopener noreferrer" class="btn">Смотреть на GitHub</a>
+        </p>
+      </article>
+
+      <!-- Добавляй столько проектов, сколько нужно -->
+    </div>
+
+    <section id="contact" style="margin-top:18px">
+      <h2>Контакты</h2>
+      <p style="color:var(--muted)">Email: <a href="mailto:you@example.com">you@example.com</a> • GitHub: <a href="https://github.com/USERNAME" target="_blank" rel="noopener noreferrer">USERNAME</a></p>
+      <p style="color:var(--muted)">Если хочешь форму — используй Formspree / Netlify Forms / Google Forms — на статическом сайте это проще, чем серверная обработка.</p>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Имя Фамилия — <a href="https://github.com/USERNAME" target="_blank" rel="noopener noreferrer">GitHub / PROFILE</a>
+    </footer>
+  </div>
+
+  <script>
+    // Маленькая магия: ставим текущий год
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
