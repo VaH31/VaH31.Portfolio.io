@@ -1,110 +1,88 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VaH31 — Портфолио</title>
-  <meta name="description" content="Портфолио VaH31 — проекты, навыки и контакты." />
-
-  <!-- Подключение CSS -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/Portfolio.io/style.css">
 </head>
 <body>
   <div class="container">
     <!-- Шапка -->
     <header>
       <div class="brand">
-        <div class="avatar" aria-hidden="true">VH</div>
+        <div class="avatar">V</div>
         <div>
           <div class="name">VaH31</div>
-          <div class="subtitle">C++ • C# • Python • Frontend</div>
+          <div class="subtitle">C++ • C# • Python Developer</div>
         </div>
       </div>
-
-      <nav aria-label="Основная навигация">
+      <nav>
         <a href="#about">Обо мне</a>
         <a href="#projects">Проекты</a>
         <a href="#contact">Контакты</a>
-        <a href="https://github.com/VaH31" target="_blank" rel="noopener noreferrer">GitHub</a>
       </nav>
     </header>
 
-    <!-- Блок обо мне -->
-    <section class="hero" id="about" aria-labelledby="about-title">
+    <!-- Hero -->
+    <section class="hero" id="about">
       <div>
-        <h1 id="about-title">Привет — я VaH31</h1>
-        <p>Занимаюсь разработкой, интересуюсь C++, C#, Python и созданием удобных интерфейсов.</p>
-
+        <h1>Привет! 👋</h1>
+        <p>Я разработчик, увлечённый созданием проектов на C++, C# и Python.</p>
         <div class="skills">
-          <span class="skill">HTML</span>
-          <span class="skill">CSS</span>
-          <span class="skill">JavaScript</span>
-          <span class="skill">React</span>
-          <span class="skill">Node</span>
           <span class="skill">C++</span>
           <span class="skill">C#</span>
           <span class="skill">Python</span>
         </div>
-
         <div class="actions">
-          <a class="btn" href="#projects">Смотреть проекты</a>
           <a class="btn" href="mailto:wh8ox@yandex.ru">Написать</a>
+          <a class="btn" href="https://github.com/VaH31" target="_blank">GitHub</a>
         </div>
       </div>
-
       <div class="profile-photo">
-        <!-- Твоё фото -->
-        <img src="images/profile.jpg" alt="Фото VaH31">
+        <img src="/Portfolio.io/Фото%20портфолио/profile.jpg" alt="Фото профиля">
       </div>
     </section>
 
     <!-- Проекты -->
-    <h2 id="projects">Проекты</h2>
-    <div class="projects">
-
-      <!-- Пример проекта с галереей -->
-      <article class="card" aria-labelledby="p1">
-        <h3 id="p1">Проект 1</h3>
-        <div class="gallery">
-          <img src="images/project1-1.jpg" alt="Скриншот 1" onclick="openLightbox(this)">
-          <img src="images/project1-2.jpg" alt="Скриншот 2" onclick="openLightbox(this)">
-          <img src="images/project1-3.jpg" alt="Скриншот 3" onclick="openLightbox(this)">
+    <section id="projects">
+      <h2>Мои проекты</h2>
+      <div class="projects">
+        <!-- Пример проекта -->
+        <div class="card">
+          <div class="gallery">
+            <img src="/Portfolio.io/Фото%20портфолио/Python/Анализ%20транзакций/Screenshot_1.png"
+                 alt="Скриншот проекта"
+                 onclick="openLightbox(this)">
+            <img src="/Portfolio.io/Фото%20портфолио/Python/Анализ%20транзакций/Screenshot_2.png"
+                 alt="Скриншот проекта"
+                 onclick="openLightbox(this)">
+          </div>
+          <h3>Анализ транзакций</h3>
+          <p>Python-скрипт для анализа финансовых операций и визуализации отчётов.</p>
         </div>
-        <p>Описание проекта. Что делает, какие технологии использованы.</p>
-        <a href="https://github.com/VaH31/project-1" target="_blank" class="btn">GitHub</a>
-      </article>
 
-      <article class="card" aria-labelledby="p2">
-        <h3 id="p2">Проект 2</h3>
-        <div class="gallery">
-          <img src="images/project2-1.jpg" alt="Скриншот 1" onclick="openLightbox(this)">
-          <img src="images/project2-2.jpg" alt="Скриншот 2" onclick="openLightbox(this)">
-        </div>
-        <p>Описание проекта 2.</p>
-        <a href="https://github.com/VaH31/project-2" target="_blank" class="btn">GitHub</a>
-      </article>
-
-    </div>
+        <!-- Добавь другие проекты по аналогии -->
+      </div>
+    </section>
 
     <!-- Контакты -->
     <section id="contact">
       <h2>Контакты</h2>
-      <p>Email: <a href="mailto:wh8ox@yandex.ru">wh8ox@yandex.ru</a></p>
-      <p>GitHub: <a href="https://github.com/VaH31" target="_blank">VaH31</a></p>
+      <p>Почта: <a href="mailto:wh8ox@yandex.ru">wh8ox@yandex.ru</a></p>
+      <p>GitHub: <a href="https://github.com/VaH31" target="_blank">github.com/VaH31</a></p>
     </section>
 
-    <!-- Подвал -->
     <footer>
-      © <span id="year"></span> VaH31 — <a href="https://github.com/VaH31" target="_blank">GitHub</a>
+      <p>&copy; <span id="year"></span> VaH31</p>
     </footer>
   </div>
 
-  <!-- Лайтбокс (модальное окно для увеличенных фото) -->
+  <!-- Лайтбокс -->
   <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-    <img id="lightbox-img" src="" alt="Просмотр изображения">
+    <img id="lightbox-img" src="" alt="">
   </div>
 
-  <!-- Подключение JS -->
-  <script src="script.js"></script>
+  <script src="/Portfolio.io/script.js"></script>
 </body>
 </html>
