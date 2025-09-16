@@ -1,73 +1,245 @@
+@@ -1,118 +1,151 @@
 <!doctype html>
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Валерий (VaH31) — Портфолио</title>
+  <title>VaH31 — Портфолио</title>
   <meta name="description" content="Портфолио — проекты, навыки и контакты." />
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Валерий (VaH31) — Портфолио</title>
+  <style>
+    /* тот же стиль, что и раньше */
+    :root{
+      --bg:#0f1724; --card:#0b1220; --muted:#9aa4b2; --accent:#3b82f6;
+      --radius:12px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#071023 0%, #081125 100%); color:#e6eef6; line-height:1.5}
+    .container{max-width:980px;margin:32px auto;padding:20px}
+    :root{--bg:#0f1724;--card:#0b1220;--muted:#9aa4b2;--accent:#3b82f6;color-scheme:dark}
+    html,body{height:100%;margin:0;font-family:Inter,Segoe UI,Roboto,Arial;background:linear-gradient(180deg,#071028 0%,#041022 100%);color:#e6eef6}
+    .container{max-width:1150px;margin:32px auto;padding:20px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .avatar{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:inline-flex;align-items:center;justify-content:center;font-weight:700}
+    nav{display:flex;gap:10px;flex-wrap:wrap}
+    nav a{color:var(--muted);text-decoration:none;padding:8px;border-radius:8px;font-size:0.95rem}
+    nav a:hover{color:#fff;background:rgba(255,255,255,0.03)}
+    .hero{display:grid;grid-template-columns:1fr;gap:18px;margin-top:28px;padding:20px;background:rgba(255,255,255,0.02);border-radius:var(--radius)}
+    .hero h1{margin:0;font-size:2rem}
+    .hero p{margin:0;color:var(--muted)}
+    .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:18px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .card img{width:100%;height:140px;object-fit:cover;border-radius:8px}
+    .card h3{margin:8px 0 6px 0;font-size:1.05rem}
+    .card p{margin:0;color:var(--muted);font-size:0.95rem}
+    .skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .skill{background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px;font-size:0.9rem;color:var(--muted)}
+    footer{margin-top:28px;padding:18px;border-radius:10px;text-align:center;color:var(--muted);font-size:0.9rem}
+    .actions{display:flex;gap:10px}
+    .btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:10px;text-decoration:none;color:inherit}
+    .meta{display:flex;gap:10px;align-items:center}
+    @media (max-width:640px){
+      header{flex-direction:column;align-items:flex-start}
+      .hero h1{font-size:1.5rem}
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .avatar{width:64px;height:64px;border-radius:8px;background:linear-gradient(135deg,#3b82f6,#06b6d4);display:flex;align-items:center;justify-content:center;font-weight:700}
+    h1{margin:0;font-size:20px}
+    .subtitle{color:var(--muted);font-size:13px}
+    .langs{display:flex;gap:8px;align-items:center}
+    .lang{background:rgba(255,255,255,0.04);padding:6px 10px;border-radius:999px;font-size:13px}
+    main{margin-top:22px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+    .card{background:var(--card);padding:12px;border-radius:10px;box-shadow:0 6px 18px rgba(2,6,23,0.6);display:flex;flex-direction:column}
+    .card h3{margin:6px 0 0 0;font-size:16px}
+    .meta{display:flex;gap:8px;align-items:center;margin-top:6px}
+    .tag{background:rgba(255,255,255,0.03);padding:4px 8px;border-radius:8px;font-size:12px;color:var(--muted)}
+    .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}
+    .gallery img{width:100%;height:140px;object-fit:cover;border-radius:6px;border:1px solid rgba(255,255,255,0.03)}
+    .desc{margin-top:10px;color:var(--muted);font-size:14px;min-height:48px}
+    footer{margin-top:28px;display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px}
+    .projects-count{opacity:.9}
+    @media (max-width:600px){.gallery{grid-template-columns:repeat(1,1fr)}.avatar{width:48px;height:48px}}
+  </style>
 </head>
 <body>
   <div class="container">
-    <header class="site-header">
+    <header>
       <div class="brand">
+        <div class="avatar" aria-hidden="true">VH</div>
         <div class="avatar">VH</div>
         <div>
+          <div style="font-weight:700">VaH31</div>
+          <div style="font-size:0.9rem;color:var(--muted)">C++ • C# • Python • Frontend</div>
           <h1>Валерий (VaH31)</h1>
-          <div class="subtitle">C++ • C# • Python • Frontend</div>
+          <div class="subtitle">Портфолио — Языки: C++, C#, Python</div>
         </div>
       </div>
 
-      <nav class="nav">
+      <nav aria-label="Основная навигация">
         <a href="#about">Обо мне</a>
         <a href="#projects">Проекты</a>
         <a href="#contact">Контакты</a>
-        <a href="https://github.com/VaH31" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/VaH31" target="_blank" rel="noopener noreferrer">GitHub</a>
       </nav>
+      <div class="langs">
+        <div class="lang">C++</div>
+        <div class="lang">C#</div>
+        <div class="lang">Python</div>
+      </div>
     </header>
 
-    <section id="about" class="hero">
-      <div class="hero-left">
-        <h2>Привет — я VaH31</h2>
-        <p class="lead">Занимаюсь разработкой, интересуюсь C++, C#, Python и созданием удобных интерфейсов.</p>
-        <div class="actions">
+    <section class="hero" id="about" aria-labelledby="about-title">
+      <div>
+        <h1 id="about-title">Привет — я VaH31</h1>
+        <p>Занимаюсь разработкой, интересуюсь C++, C#, Python и созданием удобных интерфейсов.</p>
+    <main>
+      <section class="grid">
+        <!-- Project 1: Анализ изображений животных и их классификация (Python) -->
+        <article class="card">
+          <h3>Анализ изображений животных и их классификация</h3>
+          <div class="meta"><span class="tag">Python</span></div>
+          <div class="gallery">
+            <img src="Фото%20портфолио/Python/Анализ%20изображений%20животных%20и%20их%20классификация/ef2fee8a-4726-46a6-8263-e16a1c68be7a.jpg" alt="Анализ 1">
+            <img src="Фото%20портфолио/Python/Анализ%20изображений%20животных%20и%20их%20классификация/2a7e390e-a109-4ada-aa16-c5cd620a92fc.jpg" alt="Анализ 2">
+          </div>
+          <div class="desc">(текст для описания проектов)</div>
+        </article>
+
+        <div class="skills">
+          <span class="skill">HTML</span>
+          <span class="skill">CSS</span>
+          <span class="skill">JavaScript</span>
+          <span class="skill">React</span>
+          <span class="skill">Node</span>
+          <span class="skill">C++</span>
+          <span class="skill">C#</span>
+          <span class="skill">Python</span>
+        </div>
+        <!-- Project 2: Анализ транзакций (Python) -->
+        <article class="card">
+          <h3>Анализ транзакций</h3>
+          <div class="meta"><span class="tag">Python</span></div>
+          <div class="gallery">
+            <img src="Фото%20портфолио/Python/Анализ%20транзакций/Screenshot_1.png" alt="Транзакции 1">
+            <img src="Фото%20портфолио/Python/Анализ%20транзакций/Screenshot_2.png" alt="Транзакции 2">
+            <img src="Фото%20портфолио/Python/Анализ%20транзакций/Screenshot_3.png" alt="Транзакции 3">
+          </div>
+          <div class="desc">(текст для описания проектов)</div>
+        </article>
+
+        <div style="margin-top:12px" class="actions">
+          <a class="btn" href="#projects">Смотреть проекты</a>
           <a class="btn" href="mailto:wh8ox@yandex.ru">Написать</a>
         </div>
       </div>
-      <div class="hero-photo">
-        <img src="profile.jpg" alt="Фото VaH31">
+        <!-- Project 3: Классификация Ирисов (Python) -->
+        <article class="card">
+          <h3>Классификация Ирисов</h3>
+          <div class="meta"><span class="tag">Python</span></div>
+          <div class="gallery">
+            <img src="Фото%20портфолио/Python/Классификация%20Ирисов/Screenshot_1.png" alt="Ирисы">
+          </div>
+          <div class="desc">(текст для описания проектов)</div>
+        </article>
+
+      <div style="min-width:220px;display:flex;align-items:center;justify-content:center">
+        <!-- фото -->
+        <img src="profile.jpg" alt="Фото VaH31" style="width:180px;height:180px;border-radius:18px;object-fit:cover">
       </div>
     </section>
+        <!-- Project 4: ТестовыйАгент (Python) -->
+        <article class="card">
+          <h3>ТестовыйАгент</h3>
+          <div class="meta"><span class="tag">Python</span></div>
+          <div class="gallery">
+            <img src="Фото%20портфолио/Python/ТестовыйАгент/Screenshot_1.png" alt="Агент1">
+            <img src="Фото%20портфолио/Python/ТестовыйАгент/Screenshot_6.png" alt="Агент2">
+          </div>
+          <div class="desc">(текст для описания проектов)</div>
+        </article>
 
-    <main>
-      <h2 id="projects">Проекты</h2>
-      <div id="projects-grid" class="grid">
-        <!-- карточки проектов будут динамически вставлены сюда -->
-      </div>
-      <div id="loader" class="loader">Загрузка проектов…</div>
-      <div id="error" class="error" hidden></div>
-    </main>
+    <h2 id="projects" style="margin-top:22px">Проекты</h2>
+    <div class="projects">
+      <article class="card" aria-labelledby="p1">
+        <img src="https://via.placeholder.com/600x300?text=Project+1" alt="Скриншот проекта 1">
+        <h3 id="p1">Проект 1</h3>
+        <p>Краткое описание.</p>
+        <p style="margin-top:8px">
+          <a href="https://github.com/VaH31/project-1" target="_blank" class="btn">GitHub</a>
+        </p>
+      </article>
+    </div>
+        <!-- Project 5: ТестовыйКурятник (Python) -->
+        <article class="card">
+          <h3>ТестовыйКурятник</h3>
+          <div class="meta"><span class="tag">Python</span></div>
+          <div class="gallery">
+            <img src="Фото%20портфолио/Python/ТестовыйКурятник/Screenshot_1.png" alt="Курятник1">
+            <img src="Фото%20портфолио/Python/ТестовыйКурятник/Screenshot_2.png" alt="Курятник2">
+            <img src="Фото%20портфолио/Python/ТестовыйКурятник/Screenshot_4.png" alt="Курятник3">
+          </div>
+          <div class="desc">(текст для описания проектов)</div>
+        </article>
 
-    <section id="contact" class="contact">
+    <section id="contact" style="margin-top:18px">
       <h2>Контакты</h2>
-      <p>Email: <a href="mailto:wh8ox@yandex.ru">wh8ox@yandex.ru</a></p>
-      <p>GitHub: <a href="https://github.com/VaH31" target="_blank">VaH31</a></p>
+      <p style="color:var(--muted)">Email: <a href="mailto:wh8ox@yandex.ru">wh8ox@yandex.ru</a> • GitHub: <a href="https://github.com/VaH31" target="_blank">VaH31</a></p>
     </section>
+        <!-- Project 6: Форма для отслеживания обновлений (C#) -->
+        <article class="card">
+          <h3>Форма для отслеживания обновлений</h3>
+          <div class="meta"><span class="tag">C#</span></div>
+          <div class="gallery">
+            <img src="Фото%20портфолио/С%23/Форма%20для%20отслеживания%20обновлений/Screenshot_3.png" alt="Обновления">
+          </div>
+          <div class="desc">(текст для описания проектов)</div>
+        </article>
 
-    <footer class="site-footer">
-      © <span id="year"></span> VaH31
+    <footer>
+      © <span id="year"></span> VaH31 — <a href="https://github.com/VaH31" target="_blank">GitHub</a>
     </footer>
   </div>
+        <!-- Project 7: Форма для отслеживания рейсов (C#) -->
+        <article class="card">
+          <h3>Форма для отслеживания рейсов</h3>
+          <div class="meta"><span class="tag">C#</span></div>
+          <div class="gallery">
+            <img src="Фото%20портфолио/С%23/Форма%20для%20отслеживания%20рейсов/Screenshot_1.png" alt="Рейсы1">
+            <img src="Фото%20портфолио/С%23/Форма%20для%20отслеживания%20рейсов/Screenshot_2.png" alt="Рейсы2">
+          </div>
+          <div class="desc">(текст для описания проектов)</div>
+        </article>
 
-  <!-- Лайтбокс для просмотра изображений -->
-  <div id="lightbox" class="lightbox" aria-hidden="true">
-    <button class="lb-close" id="lb-close" aria-label="Закрыть">✕</button>
-    <button class="lb-prev" id="lb-prev" aria-label="Предыдущее">‹</button>
-    <img id="lb-img" src="" alt="">
-    <div id="lb-caption" class="lb-caption"></div>
-    <button class="lb-next" id="lb-next" aria-label="Следующее">›</button>
+        <!-- Project 8: Форма учет в строительном магазине (C#) -->
+        <article class="card">
+          <h3>Форма учет в строительном магазине</h3>
+          <div class="meta"><span class="tag">C#</span></div>
+          <div class="gallery">
+            <img src="Фото%20портфолио/С%23/Форма%20учет%20в%20строительном%20магазине/Screenshot_1.png" alt="Магазин1">
+            <img src="Фото%20портфолио/С%23/Форма%20учет%20в%20строительном%20магазине/Screenshot_2.png" alt="Магазин2">
+            <img src="Фото%20портфолио/С%23/Форма%20учет%20в%20строительном%20магазине/Screenshot_3.png" alt="Магазин3">
+            <img src="Фото%20портфолио/С%23/Форма%20учет%20в%20строительном%20магазине/Screenshot_4.png" alt="Магазин4">
+            <img src="Фото%20портфолио/С%23/Форма%20учет%20в%20строительном%20магазине/Screenshot_5.png" alt="Магазин5">
+          </div>
+          <div class="desc">(текст для описания проектов)</div>
+        </article>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+      </section>
+
+      <footer>
+        <div class="projects-count">Проектов: 8</div>
+        <div>© Валерий (VaH31)</div>
+      </footer>
+    </main>
   </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
