@@ -6,11 +6,13 @@
   <title>Валерий (VaH31) — Портфолио</title>
   <meta name="description" content="Портфолио — проекты, навыки и контакты." />
 
-  <!-- CSS подключаем относительно -->
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
+
+    <!-- Шапка -->
     <header>
       <div class="brand">
         <div class="avatar">VH</div>
@@ -28,41 +30,74 @@
       </nav>
     </header>
 
+    <!-- Блок "Обо мне" -->
     <section id="about" class="hero">
       <h2>Привет — я VaH31</h2>
       <p>Занимаюсь разработкой, интересуюсь C++, C#, Python и созданием удобных интерфейсов.</p>
+      <img src="profile.jpg" alt="Фото VaH31" style="width:180px;height:180px;border-radius:18px;object-fit:cover">
     </section>
 
+    <!-- Блок "Проекты" -->
     <main>
       <h2 id="projects">Проекты</h2>
       <div class="grid">
-        <!-- Пример проекта -->
+
+        <!-- Проект 1 -->
         <article class="card">
           <h3>Анализ изображений животных</h3>
           <div class="meta"><span class="tag">Python</span></div>
           <div class="gallery">
-            <img src="Фото%20портфолио/Python/Анализ%20изображений%20животных%20и%20их%20классификация/ef2fee8a-4726-46a6-8263-e16a1c68be7a.jpg" alt="Анализ 1">
-            <img src="Фото%20портфолио/Python/Анализ%20изображений%20животных%20и%20их%20классификация/2a7e390e-a109-4ada-aa16-c5cd620a92fc.jpg" alt="Анализ 2">
+            <a href="Фото%20портфолио/Python/Анализ%20изображений%20животных%20и%20их%20классификация/ef2fee8a-4726-46a6-8263-e16a1c68be7a.jpg" target="_blank">
+              <img src="Фото%20портфолио/Python/Анализ%20изображений%20животных%20и%20их%20классификация/ef2fee8a-4726-46a6-8263-e16a1c68be7a.jpg" alt="Анализ 1">
+            </a>
+            <a href="Фото%20портфолио/Python/Анализ%20изображений%20животных%20и%20их%20классификация/2a7e390e-a109-4ada-aa16-c5cd620a92fc.jpg" target="_blank">
+              <img src="Фото%20портфолио/Python/Анализ%20изображений%20животных%20и%20их%20классификация/2a7e390e-a109-4ada-aa16-c5cd620a92fc.jpg" alt="Анализ 2">
+            </a>
           </div>
           <div class="desc">(Описание проекта)</div>
         </article>
 
-        <!-- Добавь остальные проекты сюда так же -->
+        <!-- Проект 2 -->
+        <article class="card">
+          <h3>Анализ транзакций</h3>
+          <div class="meta"><span class="tag">Python</span></div>
+          <div class="gallery">
+            <a href="Фото%20портфолио/Python/Анализ%20транзакций/Screenshot_1.png" target="_blank"><img src="Фото%20портфолио/Python/Анализ%20транзакций/Screenshot_1.png" alt="Транзакции 1"></a>
+            <a href="Фото%20портфолио/Python/Анализ%20транзакций/Screenshot_2.png" target="_blank"><img src="Фото%20портфолио/Python/Анализ%20транзакций/Screenshot_2.png" alt="Транзакции 2"></a>
+            <a href="Фото%20портфолио/Python/Анализ%20транзакций/Screenshot_3.png" target="_blank"><img src="Фото%20портфолио/Python/Анализ%20транзакций/Screenshot_3.png" alt="Транзакции 3"></a>
+          </div>
+          <div class="desc">(Описание проекта)</div>
+        </article>
+
+        <!-- Проект 3 -->
+        <article class="card">
+          <h3>Классификация Ирисов</h3>
+          <div class="meta"><span class="tag">Python</span></div>
+          <div class="gallery">
+            <a href="Фото%20портфолио/Python/Классификация%20Ирисов/Screenshot_1.png" target="_blank"><img src="Фото%20портфолио/Python/Классификация%20Ирисов/Screenshot_1.png" alt="Ирисы"></a>
+          </div>
+          <div class="desc">(Описание проекта)</div>
+        </article>
+
+        <!-- Добавь остальные проекты по аналогии -->
+
       </div>
     </main>
 
+    <!-- Блок "Контакты" -->
     <section id="contact">
       <h2>Контакты</h2>
       <p>Email: <a href="mailto:wh8ox@yandex.ru">wh8ox@yandex.ru</a></p>
       <p>GitHub: <a href="https://github.com/VaH31" target="_blank">VaH31</a></p>
     </section>
 
+    <!-- Футер -->
     <footer>
       © <span id="year"></span> VaH31 — <a href="https://github.com/VaH31" target="_blank">GitHub</a>
     </footer>
   </div>
 
-  <!-- JS подключаем относительно -->
+  <!-- JS -->
   <script src="script.js"></script>
 </body>
 </html>
