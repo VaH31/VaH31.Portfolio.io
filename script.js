@@ -90,14 +90,14 @@ function openLightbox(images, startIdx){
   currentImages = images;
   currentIndex = startIdx;
   showImage();
-  lightbox.hidden = false;
+  lightbox.classList.add("open");
 }
 
 function showImage(){
   lightboxImg.src = currentImages[currentIndex];
 }
 
-btnClose.addEventListener("click", ()=> lightbox.hidden = true);
+btnClose.addEventListener("click", ()=> lightbox.classList.remove("open"));
 btnPrev.addEventListener("click", ()=> {
   currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
   showImage();
@@ -105,6 +105,11 @@ btnPrev.addEventListener("click", ()=> {
 btnNext.addEventListener("click", ()=> {
   currentIndex = (currentIndex + 1) % currentImages.length;
   showImage();
+});
+
+// Клик по фону закрывает лайтбокс
+lightbox.addEventListener("click", (e)=>{
+  if(e.target === lightbox) lightbox.classList.remove("open");
 });
 
 loadProjects();
