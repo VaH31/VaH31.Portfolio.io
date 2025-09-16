@@ -1,7 +1,7 @@
 const OWNER = "VaH31";
 const REPO = "VaH31.Portfolio.io";
 const BASE_PATH = "Фото портфолио";
-const allowedLangs = ["Python","CSharp"];
+const allowedLangs = ["Python","CSharp"]; // Только эти папки будут грузиться
 
 const grid = document.getElementById("projects-grid");
 const loader = document.getElementById("loader");
