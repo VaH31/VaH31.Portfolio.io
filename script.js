@@ -1,7 +1,7 @@
 // === КОНФИГУРАЦИЯ (при необходимости поменяй) ===
 const OWNER = 'VaH31';         // GitHub-юзер
 const REPO  = 'VaH31.Portfolio.io';  // репозиторий
-const BASE_PATH = 'VaH31.Portfolio.io/Фото портфолио/'; // папка, где лежат языки/проекты (точно как в репе, регистр важен)
+const BASE_PATH = 'Фото портфолио'; // папка, где лежат языки/проекты (точно как в репе, регистр важен)
 // ==================================================
 
 document.getElementById('year').textContent = new Date().getFullYear();
@@ -28,7 +28,7 @@ function safeText(s){ return (s||'').toString(); }
 async function loadProjectsFromRepo(){
   try{
     loader.hidden = false; errorBox.hidden = true;
-    const baseUrl = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${encodeURIComponent(BASE_PATH)}`;
+    const baseUrl = `https://github.com/repos/${OWNER}/${REPO}/contents/${encodeURIComponent(BASE_PATH)}`;
     const topList = await fetchJson(baseUrl);
 
     // topList — массив файлов/директорий в "Фото портфолио"
@@ -165,6 +165,7 @@ function updateLb(){
 
 /* ------------------------------------------------ */
 loadProjectsFromRepo();
+
 
 
 
