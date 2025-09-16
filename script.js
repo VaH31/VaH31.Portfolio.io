@@ -1,172 +1,110 @@
-// === КОНФИГУРАЦИЯ (при необходимости поменяй) ===
-const OWNER = 'VaH31';         // GitHub-юзер
-const REPO  = 'VaH31.Portfolio.io';  // репозиторий
-const BASE_PATH = 'Фото портфолио'; // папка, где лежат языки/проекты (точно как в репе, регистр важен)
-// ==================================================
+const OWNER = "VaH31";
+const REPO = "VaH31.Portfolio.io";
+const BASE_PATH = "Фото портфолио";
 
-document.getElementById('year').textContent = new Date().getFullYear();
+const grid = document.getElementById("projects-grid");
+const loader = document.getElementById("loader");
+const errorBox = document.getElementById("error");
+const yearEl = document.getElementById("year");
+yearEl.textContent = new Date().getFullYear();
 
-const projectsGrid = document.getElementById('projects-grid');
-const loader = document.getElementById('loader');
-const errorBox = document.getElementById('error');
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightboxImage");
+const btnClose = document.getElementById("closeLightbox");
+const btnPrev = document.getElementById("prev");
+const btnNext = document.getElementById("next");
 
-let PROJECTS = []; // [{title, lang, images: [url,...]}]
-let current = { projectIdx: 0, imageIdx: 0 };
+let PROJECTS = [];
+let currentImages = [];
+let currentIndex = 0;
 
-// helper
-function isImageName(name){
-  return /\.(png|jpe?g|gif|webp|bmp|svg)$/i.test(name);
+function isImage(name){
+  return /\.(jpg|jpeg|png|gif|webp)$/i.test(name);
 }
+
 async function fetchJson(url){
-  const res = await fetch(url);
-  if(!res.ok) throw new Error(`${res.status} ${res.statusText} (${url})`);
-  return res.json();
+  const r = await fetch(url);
+  if(!r.ok) throw new Error(`${r.status} ${r.statusText}`);
+  return r.json();
 }
-function safeText(s){ return (s||'').toString(); }
 
-// main loader: рекурсивно обходит структуру BASE_PATH -> язык -> проект -> файлы
-async function loadProjectsFromRepo(){
+async function loadProjects(){
   try{
-    loader.hidden = false; errorBox.hidden = true;
-    const baseUrl = `https://github.com/VaH31/VaH31.Portfolio.io/tree/main/%D0%A4%D0%BE%D1%82%D0%BE%20%D0%BF%D0%BE%D1%80%D1%82%D1%84%D0%BE%D0%BB%D0%B8%D0%BE`;
-    const topList = await fetchJson(baseUrl);
+    loader.hidden = false;
+    errorBox.hidden = true;
+    grid.innerHTML = "";
 
-    // topList — массив файлов/директорий в "Фото портфолио"
-    for(const langEntry of topList){
-      if(langEntry.type !== 'dir') continue;
-      const langName = langEntry.name; // например "Python" или "С#"
-      const projectsList = await fetchJson(langEntry.url);
+    const baseUrl = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${encodeURIComponent(BASE_PATH)}`;
+    const langs = await fetchJson(baseUrl);
 
-      for(const projectEntry of projectsList){
-        if(projectEntry.type === 'dir'){
-          const files = await fetchJson(projectEntry.url);
-          const images = files.filter(f=>f.type==='file' && isImageName(f.name)).map(f=>f.download_url);
-          if(images.length){
-            PROJECTS.push({
-              title: projectEntry.name,
-              lang: langName,
-              images
-            });
-          }
-        } else if(projectEntry.type === 'file' && isImageName(projectEntry.name)){
-          // случай: картинки лежат прямо в папке языка -> создаём проект с именем языка
+    for(const lang of langs){
+      if(lang.type !== "dir") continue;
+      const projects = await fetchJson(lang.url);
+
+      for(const project of projects){
+        if(project.type !== "dir") continue;
+        const files = await fetchJson(project.url);
+        const images = files.filter(f => f.type==="file" && isImage(f.name)).map(f => f.download_url);
+        if(images.length){
           PROJECTS.push({
-            title: langName,
-            lang: langName,
-            images: [projectEntry.download_url]
+            title: project.name,
+            lang: lang.name,
+            images
           });
         }
       }
     }
 
-    // если ничего не найдено, покажем сообщение
-    if(PROJECTS.length === 0){
-      errorBox.hidden = false;
-      errorBox.textContent = 'Не найдено проектов/изображений в папке "'+BASE_PATH+'". Проверь структуру и права доступа (репозиторий должен быть публичным).';
-      return;
-    }
-
     renderProjects();
-  } catch(err) {
+  }catch(err){
     console.error(err);
     errorBox.hidden = false;
-    errorBox.textContent = 'Ошибка загрузки проектов: ' + err.message;
-  } finally {
+    errorBox.textContent = "Ошибка загрузки проектов: " + err.message;
+  }finally{
     loader.hidden = true;
   }
 }
 
 function renderProjects(){
-  projectsGrid.innerHTML = '';
-  PROJECTS.forEach((p, i) => {
-    const card = document.createElement('article');
-    card.className = 'card';
+  grid.innerHTML = "";
+  PROJECTS.forEach((p, idx)=>{
+    const card = document.createElement("article");
+    card.className = "card";
+    card.innerHTML = `
+      <img src="${p.images[0]}" alt="${p.title}" data-idx="${idx}">
+      <h3>${p.title}</h3>
+      <div class="meta"><span class="tag">${p.lang}</span></div>
+    `;
+    grid.appendChild(card);
+  });
 
-    const title = document.createElement('h3');
-    title.textContent = p.title;
-    card.appendChild(title);
-
-    const meta = document.createElement('div');
-    meta.className = 'meta';
-    const tag = document.createElement('span');
-    tag.className = 'tag';
-    tag.textContent = p.lang;
-    meta.appendChild(tag);
-    card.appendChild(meta);
-
-    const thumbWrap = document.createElement('div');
-    thumbWrap.className = 'thumb';
-    const img = document.createElement('img');
-    img.src = p.images[0];
-    img.alt = p.title;
-    img.dataset.proj = i;
-    img.dataset.idx = 0;
-    img.addEventListener('click', onThumbClick);
-    thumbWrap.appendChild(img);
-    card.appendChild(thumbWrap);
-
-    const desc = document.createElement('div');
-    desc.className = 'desc';
-    desc.textContent = ''; // можно подставить описание (если захочешь, добавим JSON)
-    card.appendChild(desc);
-
-    projectsGrid.appendChild(card);
+  grid.querySelectorAll("img").forEach(img=>{
+    img.addEventListener("click", e=>{
+      const idx = parseInt(e.target.dataset.idx,10);
+      openLightbox(PROJECTS[idx].images, 0);
+    });
   });
 }
 
-/* ------------------- lightbox ------------------- */
-const lb = document.getElementById('lightbox');
-const lbImg = document.getElementById('lb-img');
-const lbCaption = document.getElementById('lb-caption');
-document.getElementById('lb-close').addEventListener('click', closeLb);
-document.getElementById('lb-prev').addEventListener('click', ()=>navigate(-1));
-document.getElementById('lb-next').addEventListener('click', ()=>navigate(1));
-lb.addEventListener('click', (e)=>{ if(e.target === lb) closeLb(); });
-document.addEventListener('keydown', (e)=>{
-  if(!lb.classList.contains('open')) return;
-  if(e.key === 'Escape') closeLb();
-  if(e.key === 'ArrowLeft') navigate(-1);
-  if(e.key === 'ArrowRight') navigate(1);
+function openLightbox(images, startIdx){
+  currentImages = images;
+  currentIndex = startIdx;
+  showImage();
+  lightbox.hidden = false;
+}
+
+function showImage(){
+  lightboxImg.src = currentImages[currentIndex];
+}
+
+btnClose.addEventListener("click", ()=> lightbox.hidden = true);
+btnPrev.addEventListener("click", ()=> {
+  currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+  showImage();
+});
+btnNext.addEventListener("click", ()=> {
+  currentIndex = (currentIndex + 1) % currentImages.length;
+  showImage();
 });
 
-function onThumbClick(e){
-  const projIdx = Number(e.currentTarget.dataset.proj);
-  const imgIdx = Number(e.currentTarget.dataset.idx) || 0;
-  openLb(projIdx, imgIdx);
-}
-
-function openLb(projIdx, imgIdx){
-  current.projectIdx = projIdx;
-  current.imageIdx = imgIdx;
-  updateLb();
-  lb.classList.add('open');
-  lb.setAttribute('aria-hidden','false');
-}
-
-function closeLb(){
-  lb.classList.remove('open');
-  lb.setAttribute('aria-hidden','true');
-  lbImg.src = '';
-}
-
-function navigate(dir){
-  const proj = PROJECTS[current.projectIdx];
-  if(!proj) return;
-  current.imageIdx = (current.imageIdx + dir + proj.images.length) % proj.images.length;
-  updateLb();
-}
-
-function updateLb(){
-  const proj = PROJECTS[current.projectIdx];
-  if(!proj) return;
-  lbImg.src = proj.images[current.imageIdx];
-  lbCaption.textContent = `${proj.title} — ${current.imageIdx + 1}/${proj.images.length}`;
-}
-
-/* ------------------------------------------------ */
-loadProjectsFromRepo();
-
-
-
-
-
+loadProjects();
