@@ -1,7 +1,7 @@
 const OWNER = "VaH31";
 const REPO = "VaH31.Portfolio.io";
 const BASE_PATH = "Фото портфолио";
-const allowedLangs = ["Python","CSharp"]; // Только эти папки будут грузиться
+const allowedLangs = ["Python", "CSharp"]; // Только эти языки
 
 const grid = document.getElementById("projects-grid");
 const loader = document.getElementById("loader");
@@ -35,32 +35,27 @@ async function loadProjects(){
     errorBox.hidden = true;
     grid.innerHTML = "";
 
+    // Получаем языки
     const langs = await fetchJson(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${encodeURIComponent(BASE_PATH)}`);
 
     for(const lang of langs){
       if(lang.type !== "dir" || !allowedLangs.includes(lang.name)) continue;
 
+      // Получаем проекты внутри языка
       const projects = await fetchJson(lang.url);
 
       for(const project of projects){
         if(project.type !== "dir") continue;
 
+        // Получаем файлы проекта
         const files = await fetchJson(project.url);
-        const images = files.filter(f=>f.type==="file" && isImage(f.name)).map(f=>f.download_url);
-
-        let description = "";
-        const descFile = files.find(f=>f.type==="file" && f.name.toLowerCase()==="description.txt");
-        if(descFile){
-          const resp = await fetch(descFile.download_url);
-          description = await resp.text();
-        }
+        const images = files.filter(f => f.type==="file" && isImage(f.name)).map(f => f.download_url);
 
         if(images.length){
           PROJECTS.push({
             title: project.name,
             lang: lang.name,
-            images,
-            description
+            images
           });
         }
       }
@@ -79,14 +74,12 @@ async function loadProjects(){
 function renderProjects(){
   grid.innerHTML = "";
   PROJECTS.forEach((p, idx)=>{
-    const displayLang = p.lang === "CSharp" ? "C#" : p.lang;
     const card = document.createElement("article");
     card.className = "card";
     card.innerHTML = `
       <img src="${p.images[0]}" alt="${p.title}" data-idx="${idx}">
       <h3>${p.title}</h3>
-      <div class="meta"><span class="tag">${displayLang}</span></div>
-      <p class="desc">${p.description || ""}</p>
+      <div class="meta"><span class="tag">${p.lang}</span></div>
     `;
     grid.appendChild(card);
   });
@@ -94,12 +87,12 @@ function renderProjects(){
   grid.querySelectorAll("img").forEach(img=>{
     img.addEventListener("click", e=>{
       const idx = parseInt(e.target.dataset.idx,10);
-      openLightbox(PROJECTS[idx].images,0);
+      openLightbox(PROJECTS[idx].images, 0);
     });
   });
 }
 
-function openLightbox(images,startIdx){
+function openLightbox(images, startIdx){
   currentImages = images;
   currentIndex = startIdx;
   showImage();
@@ -110,17 +103,19 @@ function showImage(){
   lightboxImg.src = currentImages[currentIndex];
 }
 
+// Лайтбокс управление
 btnClose.addEventListener("click", ()=> lightbox.classList.remove("open"));
 btnPrev.addEventListener("click", ()=> {
-  currentIndex = (currentIndex -1 + currentImages.length) % currentImages.length;
+  currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
   showImage();
 });
 btnNext.addEventListener("click", ()=> {
-  currentIndex = (currentIndex +1) % currentImages.length;
+  currentIndex = (currentIndex + 1) % currentImages.length;
   showImage();
 });
 
-lightbox.addEventListener("click", e=>{
+// Закрытие по клику на фон
+lightbox.addEventListener("click", (e)=>{
   if(e.target === lightbox) lightbox.classList.remove("open");
 });
 
