@@ -1,11 +1,10 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>VaH31 — Портфолио</title>
-  <meta name="description" content="Портфолио — проекты, навыки и контакты.">
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VaH31 — Портфолио</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
@@ -14,31 +13,29 @@
         <div class="avatar">VH</div>
         <div>
           <h1>Валерий (VaH31)</h1>
-          <div class="subtitle">C++ • C# • Python • Frontend</div>
+          <div class="langs-list">C++ • C# • Python • Frontend</div>
         </div>
       </div>
+
       <nav>
         <a href="#about">Обо мне</a>
         <a href="#projects">Проекты</a>
         <a href="#contact">Контакты</a>
-        <a href="https://github.com/VaH31" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://github.com/VaH31" target="_blank">GitHub</a>
       </nav>
     </header>
 
-    <section id="about" class="hero">
-      <div>
-        <h2>Привет — я VaH31</h2>
-        <p>Занимаюсь разработкой, интересуюсь C++, C#, Python и созданием удобных интерфейсов.</p>
-      </div>
-      <img src="profile.jpg" alt="Фото VaH31" class="profile-photo">
+    <section class="hero" id="about">
+      <h2>Привет — я VaH31</h2>
+      <p>Занимаюсь разработкой, интересуюсь C++, C#, Python и созданием удобных интерфейсов.</p>
     </section>
 
-    <main>
-      <h2 id="projects">Проекты</h2>
+    <section id="projects">
+      <h2>Проекты</h2>
+      <div id="loader">Загрузка проектов...</div>
+      <div id="error" style="color:red;" hidden></div>
       <div id="projects-grid" class="grid"></div>
-      <div id="loader" class="loader">Загрузка проектов...</div>
-      <div id="error" class="error" hidden></div>
-    </main>
+    </section>
 
     <section id="contact">
       <h2>Контакты</h2>
@@ -46,16 +43,16 @@
     </section>
 
     <footer>
-      © <span id="year"></span> VaH31 — <a href="https://github.com/VaH31" target="_blank">GitHub</a>
+      <div id="year"></div> © VaH31
     </footer>
   </div>
 
   <!-- Лайтбокс -->
   <div id="lightbox" class="lightbox">
-    <button id="closeLightbox" class="lightbox-close">✕</button>
-    <button id="prev" class="lightbox-nav">⟨</button>
-    <img id="lightboxImage" src="" alt="Просмотр изображения">
-    <button id="next" class="lightbox-nav">⟩</button>
+    <button id="closeLightbox">✖</button>
+    <button id="prev">◀</button>
+    <img id="lightboxImage" src="" alt="">
+    <button id="next">▶</button>
   </div>
 
   <script src="script.js"></script>
