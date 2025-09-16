@@ -19,6 +19,15 @@ let PROJECTS = [];
 let currentImages = [];
 let currentIndex = 0;
 
+// 🔹 Краткие описания проектов
+const DESCRIPTIONS = {
+  "SnakeGame": "Классическая игра 'Змейка' на Python.",
+  "WeatherApp": "Приложение для получения прогноза погоды.",
+  "Calculator": "Учебный калькулятор на C# с графическим интерфейсом.",
+  "ToDoApp": "Простое приложение для заметок на C#.",
+  "Tetris": "Реализация Тетриса на Python."
+};
+
 function isImage(name){
   return /\.(jpg|jpeg|png|gif|webp)$/i.test(name);
 }
@@ -74,12 +83,15 @@ async function loadProjects(){
 function renderProjects(){
   grid.innerHTML = "";
   PROJECTS.forEach((p, idx)=>{
+    const langName = p.lang === "CSharp" ? "C#" : p.lang;
+
     const card = document.createElement("article");
     card.className = "card";
     card.innerHTML = `
       <img src="${p.images[0]}" alt="${p.title}" data-idx="${idx}">
       <h3>${p.title}</h3>
-      <div class="meta"><span class="tag">${p.lang}</span></div>
+      <p class="desc">${DESCRIPTIONS[p.title] || "Описание скоро будет."}</p>
+      <div class="meta"><span class="tag">${langName}</span></div>
     `;
     grid.appendChild(card);
   });
