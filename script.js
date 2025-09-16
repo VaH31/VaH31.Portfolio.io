@@ -28,7 +28,7 @@ function safeText(s){ return (s||'').toString(); }
 async function loadProjectsFromRepo(){
   try{
     loader.hidden = false; errorBox.hidden = true;
-    const baseUrl = `https://github.com/repos/${OWNER}/${REPO}/contents/${encodeURIComponent(BASE_PATH)}`;
+    const baseUrl = `https://github.com/VaH31/VaH31.Portfolio.io/tree/main/%D0%A4%D0%BE%D1%82%D0%BE%20%D0%BF%D0%BE%D1%80%D1%82%D1%84%D0%BE%D0%BB%D0%B8%D0%BE`;
     const topList = await fetchJson(baseUrl);
 
     // topList — массив файлов/директорий в "Фото портфолио"
@@ -165,6 +165,7 @@ function updateLb(){
 
 /* ------------------------------------------------ */
 loadProjectsFromRepo();
+
 
 
 
