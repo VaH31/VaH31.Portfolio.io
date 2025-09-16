@@ -11,7 +11,7 @@ body{margin:0; background:linear-gradient(180deg,#071023 0%, #081125 100%); font
 .container{max-width:1150px;margin:32px auto;padding:20px;}
 header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
 .brand{display:flex;align-items:center;gap:12px;}
-.avatar{width:64px;height:64px;border-radius:8px;background:linear-gradient(135deg,#3b82f6,#06b6d4);display:flex;align-items:center;justify-content:center;font-weight:700;}
+.avatar img{border-radius:8px;}
 .langs-list{color:var(--muted);font-size:0.95rem;margin-top:4px;}
 nav a{color:var(--muted);text-decoration:none;padding:6px 10px;border-radius:8px;margin-left:8px;}
 nav a:hover{background:rgba(255,255,255,0.05);}
