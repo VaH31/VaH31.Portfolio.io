@@ -1,7 +1,7 @@
 // === КОНФИГУРАЦИЯ (при необходимости поменяй) ===
 const OWNER = 'VaH31';         // GitHub-юзер
 const REPO  = 'VaH31.Portfolio.io';  // репозиторий
-const BASE_PATH = 'VaH31.Portfolio.io/Фото портфолио'; // папка, где лежат языки/проекты (точно как в репе, регистр важен)
+const BASE_PATH = 'VaH31.Portfolio.io/Фото портфолио/'; // папка, где лежат языки/проекты (точно как в репе, регистр важен)
 // ==================================================
 
 document.getElementById('year').textContent = new Date().getFullYear();
@@ -165,5 +165,6 @@ function updateLb(){
 
 /* ------------------------------------------------ */
 loadProjectsFromRepo();
+
 
 
