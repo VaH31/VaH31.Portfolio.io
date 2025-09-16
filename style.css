@@ -46,6 +46,17 @@ header {
   font-size: 20px;
 }
 
+/* 🔹 уменьшенный заголовок */
+.brand h1 {
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
 nav {
   display: flex;
   gap: 12px;
@@ -107,6 +118,13 @@ nav a:hover {
 
 .card h3 {
   margin: 8px 0 4px;
+}
+
+/* 🔹 описание под проектом */
+.card .desc {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin: 4px 0 8px;
 }
 
 .loader, .error {
