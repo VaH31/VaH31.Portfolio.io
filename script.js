@@ -34,17 +34,22 @@ async function loadProjects(){
     errorBox.hidden = true;
     grid.innerHTML = "";
 
-    const baseUrl = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${encodeURIComponent(BASE_PATH)}`;
-    const langs = await fetchJson(baseUrl);
+    // Получаем языки (C++, C#, Python и т.д.)
+    const langs = await fetchJson(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${encodeURIComponent(BASE_PATH)}`);
 
     for(const lang of langs){
       if(lang.type !== "dir") continue;
-      const projects = await fetchJson(lang.url);
+
+      // Получаем проекты внутри языка, учитываем спецсимволы
+      const projects = await fetchJson(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${encodeURIComponent(BASE_PATH)}/${encodeURIComponent(lang.name)}`);
 
       for(const project of projects){
         if(project.type !== "dir") continue;
-        const files = await fetchJson(project.url);
+
+        // Получаем файлы проекта
+        const files = await fetchJson(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${encodeURIComponent(BASE_PATH)}/${encodeURIComponent(lang.name)}/${encodeURIComponent(project.name)}`);
         const images = files.filter(f => f.type==="file" && isImage(f.name)).map(f => f.download_url);
+
         if(images.length){
           PROJECTS.push({
             title: project.name,
