@@ -175,3 +175,10 @@ footer {
 .lightbox-nav { top: 50%; transform: translateY(-50%); }
 #prev { left: 20px; }
 #next { right: 20px; }
+
+.card .desc {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-top: 6px;
+  line-height: 1.4;
+}
