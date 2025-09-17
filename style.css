@@ -164,3 +164,8 @@ footer {
 .lightbox-nav { top: 50%; transform: translateY(-50%); }
 #prev { left: 20px; }
 #next { right: 20px; }
+
+header h1 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
