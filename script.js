@@ -35,13 +35,13 @@ async function loadProjects() {
     grid.innerHTML = "";
     PROJECTS = [];
 
-    // Получаем список языков (Python, CSharp и т.п.)
+    // Получаем список языков
     const langs = await fetchJson(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${encodeURIComponent(BASE_PATH)}`);
 
     for (const lang of langs) {
       if (lang.type !== "dir") continue;
 
-      // Получаем список проектов внутри языка
+      // Получаем список проектов
       const projects = await fetchJson(lang.url);
 
       for (const project of projects) {
@@ -49,12 +49,26 @@ async function loadProjects() {
 
         // Получаем файлы проекта
         const files = await fetchJson(project.url);
+
         const images = files.filter(f => f.type === "file" && isImage(f.name)).map(f => f.download_url);
+
+        // Загружаем описание
+        let description = "Описание отсутствует";
+        const descFile = files.find(f => f.type === "file" && f.name.toLowerCase() === "description.txt");
+        if (descFile) {
+          try {
+            const descResp = await fetch(descFile.download_url);
+            description = (await descResp.text()).trim();
+          } catch {
+            description = "Ошибка загрузки описания";
+          }
+        }
 
         PROJECTS.push({
           title: project.name,
           lang: lang.name,
-          images: images.length ? images : ["default.png"] // заглушка если нет картинок
+          images: images.length ? images : ["default.png"],
+          description
         });
       }
     }
@@ -79,6 +93,7 @@ function renderProjects() {
       <img src="${p.images[0]}" alt="${p.title}" data-idx="${idx}">
       <h3>${p.title}</h3>
       <div class="meta"><span class="tag">${langName}</span></div>
+      <p class="desc">${p.description}</p>
     `;
     grid.appendChild(card);
   });
