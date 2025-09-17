@@ -28,6 +28,16 @@ header {
   gap: 16px;
 }
 
+header h1 {
+  font-size: 1.4rem;  /* было крупнее, теперь аккуратнее */
+  margin: 0;
+}
+
+header .subtitle {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
 .brand {
   display: flex;
   gap: 12px;
@@ -164,8 +174,3 @@ footer {
 .lightbox-nav { top: 50%; transform: translateY(-50%); }
 #prev { left: 20px; }
 #next { right: 20px; }
-
-header h1 {
-  font-size: 1.2rem;
-  font-weight: 600;
-}
