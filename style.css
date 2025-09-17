@@ -174,3 +174,24 @@ footer {
 .lightbox-nav { top: 50%; transform: translateY(-50%); }
 #prev { left: 20px; }
 #next { right: 20px; }
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;       /* фото вниз */
+    text-align: center;           /* центрируем текст */
+  }
+
+  .hero img.profile-photo {
+    width: 140px;                 /* уменьшаем фото */
+    height: 140px;
+    margin-top: 12px;             /* отступ сверху */
+  }
+
+  .hero h2 {
+    font-size: 1.3rem;
+  }
+
+  .hero p {
+    font-size: 0.95rem;
+  }
+}
