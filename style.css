@@ -46,17 +46,6 @@ header {
   font-size: 20px;
 }
 
-/* 🔹 уменьшенный заголовок */
-.brand h1 {
-  font-size: 1.4rem;
-  margin: 0;
-}
-
-.subtitle {
-  font-size: 0.95rem;
-  color: var(--muted);
-}
-
 nav {
   display: flex;
   gap: 12px;
@@ -120,11 +109,11 @@ nav a:hover {
   margin: 8px 0 4px;
 }
 
-/* 🔹 описание под проектом */
 .card .desc {
   font-size: 0.9rem;
   color: var(--muted);
-  margin: 4px 0 8px;
+  margin-top: 6px;
+  line-height: 1.4;
 }
 
 .loader, .error {
@@ -175,10 +164,3 @@ footer {
 .lightbox-nav { top: 50%; transform: translateY(-50%); }
 #prev { left: 20px; }
 #next { right: 20px; }
-
-.card .desc {
-  font-size: 0.9rem;
-  color: var(--muted);
-  margin-top: 6px;
-  line-height: 1.4;
-}
